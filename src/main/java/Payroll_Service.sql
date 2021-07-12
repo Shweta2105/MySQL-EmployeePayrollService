@@ -44,3 +44,45 @@ mysql> desc employee_payroll;
 +--------+-------------+------+-----+---------+----------------+
 4 rows in set (0.84 sec)
 
+//UC 3
+
+mysql> insert INTO employee_payroll
+    -> (name,salary,start) values
+    -> ("John",300000,'2021-07-01');
+Query OK, 1 row affected (0.84 sec)
+
+mysql> insert INTO employee_payroll
+    -> (name,salary,start) values
+    -> ("Mark",350000,'2021-05-01'),("Saam",250000,'2021-06-01');
+Query OK, 2 rows affected (0.43 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+------+--------+------------+
+| id | name | salary | start      |
++----+------+--------+------------+
+|  1 | John | 300000 | 2021-07-01 |
+|  2 | Mark | 350000 | 2021-05-01 |
+|  3 | Saam | 250000 | 2021-06-01 |
++----+------+--------+------------+
+3 rows in set (0.18 sec)
+
+mysql> insert INTO employee_payroll
+    -> (name,salary,start) values
+    -> ("richard",350000,'2021-05-01'),("David",250000,'2021-06-01');
+Query OK, 2 rows affected (0.25 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+------------+
+| id | name    | salary | start      |
++----+---------+--------+------------+
+|  1 | John    | 300000 | 2021-07-01 |
+|  2 | Mark    | 350000 | 2021-05-01 |
+|  3 | Saam    | 250000 | 2021-06-01 |
+|  4 | richard | 350000 | 2021-05-01 |
+|  5 | David   | 250000 | 2021-06-01 |
++----+---------+--------+------------+
+5 rows in set (0.03 sec)
+
+//UC 4
