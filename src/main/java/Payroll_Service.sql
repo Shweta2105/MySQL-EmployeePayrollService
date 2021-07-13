@@ -247,3 +247,51 @@ mysql> select * from employee_payroll;
 |  8 | Saimra  | NULL         | NULL    |            | 250000 | 2021-06-01 | F      |
 +----+---------+--------------+---------+------------+--------+------------+--------+
 8 rows in set (0.00 sec)
+
+//UC 9
+
+
+mysql> ALTER TABLE employee_payroll
+    -> RENAME column salary to Basic_pay;
+Query OK, 0 rows affected (0.35 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll
+    -> ADD Deduction double NOT NULL after Basic_pay;
+Query OK, 0 rows affected (3.32 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll
+    -> ADD Taxable_pay double NOT NULL after Deduction;
+Query OK, 0 rows affected (2.61 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll
+    -> ADD Income_Tax double NOT NULL after Taxable_pay;
+Query OK, 0 rows affected (3.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll
+    -> ADD Net_Pay double NOT NULL after Income_Tax;
+Query OK, 0 rows affected (2.98 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll
+    -> ADD Tax double NOT NULL after Income_Tax;
+Query OK, 0 rows affected (3.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-----+---------+------------+--------+
+| id | name    | phone_number | address | department | Basic_pay | Deduction | Taxable_pay | Income_Tax | Tax | Net_Pay | start      | gender |
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-----+---------+------------+--------+
+|  1 | John    | NULL         | NULL    |            |    300000 |         0 |           0 |          0 |   0 |       0 | 2021-07-01 | M      |
+|  2 | Mark    | NULL         | NULL    |            |    350000 |         0 |           0 |          0 |   0 |       0 | 2021-05-01 | M      |
+|  3 | Saam    | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |   0 |       0 | 2021-06-01 | M      |
+|  4 | richard | NULL         | NULL    |            |    350000 |         0 |           0 |          0 |   0 |       0 | 2021-05-01 | M      |
+|  5 | David   | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |   0 |       0 | 2021-06-01 | M      |
+|  6 | Bill    | NULL         | NULL    |            |    450000 |         0 |           0 |          0 |   0 |       0 | 2021-03-01 | M      |
+|  7 | Maria   | NULL         | NULL    |            |    350000 |         0 |           0 |          0 |   0 |       0 | 2021-05-01 | F      |
+|  8 | Saimra  | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |   0 |       0 | 2021-06-01 | F      |
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-----+---------+------------+--------+
+8 rows in set (0.05 sec)
