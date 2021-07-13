@@ -199,3 +199,51 @@ mysql>  SELECT gender, count(gender) FROM employee_payroll GROUP BY gender;
 | F      |             2 |
 +--------+---------------+
 2 rows in set (0.17 sec)
+// UC 8
+
+
+mysql> ALTER TABLE employee_payroll ADD phone_number VARCHAR(15) AFTER name;
+Query OK, 0 rows affected (2.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD address VARCHAR(250) AFTER phone_number;
+Query OK, 0 rows affected (4.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD department VARCHAR(70) NOT NULL AFTER address;
+Query OK, 0 rows affected (3.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ALTER address SET DEFAULT 'TBD';
+Query OK, 0 rows affected (0.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee_payroll;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int          | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(50)  | NO   |     | NULL    |                |
+| phone_number | varchar(15)  | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | TBD     |                |
+| department   | varchar(70)  | NO   |     | NULL    |                |
+| salary       | int          | NO   |     | NULL    |                |
+| start        | date         | YES  |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.78 sec)
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+--------+------------+--------+
+| id | name    | phone_number | address | department | salary | start      | gender |
++----+---------+--------------+---------+------------+--------+------------+--------+
+|  1 | John    | NULL         | NULL    |            | 300000 | 2021-07-01 | M      |
+|  2 | Mark    | NULL         | NULL    |            | 350000 | 2021-05-01 | M      |
+|  3 | Saam    | NULL         | NULL    |            | 250000 | 2021-06-01 | M      |
+|  4 | richard | NULL         | NULL    |            | 350000 | 2021-05-01 | M      |
+|  5 | David   | NULL         | NULL    |            | 250000 | 2021-06-01 | M      |
+|  6 | Bill    | NULL         | NULL    |            | 450000 | 2021-03-01 | M      |
+|  7 | Maria   | NULL         | NULL    |            | 350000 | 2021-05-01 | F      |
+|  8 | Saimra  | NULL         | NULL    |            | 250000 | 2021-06-01 | F      |
++----+---------+--------------+---------+------------+--------+------------+--------+
+8 rows in set (0.00 sec)
