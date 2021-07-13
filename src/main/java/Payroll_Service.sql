@@ -112,4 +112,42 @@ mysql>  SELECT salary FROM employee_payroll WHERE start BETWEEN CAST('2021-05-09
 +--------+
 3 rows in set (0.00 sec)
 
+//UC 6
+
+mysql> alter table employee_payroll
+    -> ADD gender char(1);
+Query OK, 0 rows affected (12.41 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+------------+--------+
+| id | name    | salary | start      | gender |
++----+---------+--------+------------+--------+
+|  1 | John    | 300000 | 2021-07-01 | NULL   |
+|  2 | Mark    | 350000 | 2021-05-01 | NULL   |
+|  3 | Saam    | 250000 | 2021-06-01 | NULL   |
+|  4 | richard | 350000 | 2021-05-01 | NULL   |
+|  5 | David   | 250000 | 2021-06-01 | NULL   |
+|  6 | Bill    | 450000 | 2021-03-01 | NULL   |
++----+---------+--------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE employee_payroll
+    -> set gender = "M" where name ="Bill" or name ="John";
+Query OK, 2 rows affected (0.23 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+------------+--------+
+| id | name    | salary | start      | gender |
++----+---------+--------+------------+--------+
+|  1 | John    | 300000 | 2021-07-01 | M      |
+|  2 | Mark    | 350000 | 2021-05-01 | NULL   |
+|  3 | Saam    | 250000 | 2021-06-01 | NULL   |
+|  4 | richard | 350000 | 2021-05-01 | NULL   |
+|  5 | David   | 250000 | 2021-06-01 | NULL   |
+|  6 | Bill    | 450000 | 2021-03-01 | M      |
++----+---------+--------+------------+--------+
+6 rows in set (0.10 sec)
+
 
