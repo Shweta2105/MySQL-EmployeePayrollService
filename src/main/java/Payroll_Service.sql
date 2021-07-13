@@ -295,3 +295,40 @@ mysql> select * from employee_payroll;
 |  8 | Saimra  | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |   0 |       0 | 2021-06-01 | F      |
 +----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-----+---------+------------+--------+
 8 rows in set (0.05 sec)
+
+//UC 10
+
+mysql> UPDATE employee_payroll
+    -> set department ="sales" WHERE name ="Maria";
+Query OK, 1 row affected (1.28 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> INSERT employee_payroll
+    -> (name, department, Basic_pay, Deduction, Taxable_pay, Income_Tax, Tax, Net_Pay, start, gender) values
+    -> ("Maria", "Marketing",300000, 50000, 250000, 25000, 50000, 250000,'2021-04-01',"F");
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+| id | name    | phone_number | address | department | Basic_pay | Deduction | Taxable_pay | Income_Tax | Tax   | Net_Pay | start      | gender |
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+|  1 | John    | NULL         | NULL    |            |    300000 |         0 |           0 |          0 |     0 |       0 | 2021-07-01 | M      |
+|  2 | Mark    | NULL         | NULL    |            |    350000 |         0 |           0 |          0 |     0 |       0 | 2021-05-01 | M      |
+|  3 | Saam    | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |     0 |       0 | 2021-06-01 | M      |
+|  4 | richard | NULL         | NULL    |            |    350000 |         0 |           0 |          0 |     0 |       0 | 2021-05-01 | M      |
+|  5 | David   | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |     0 |       0 | 2021-06-01 | M      |
+|  6 | Bill    | NULL         | NULL    |            |    450000 |         0 |           0 |          0 |     0 |       0 | 2021-03-01 | M      |
+|  7 | Maria   | NULL         | NULL    | sales      |    350000 |         0 |           0 |          0 |     0 |       0 | 2021-05-01 | F      |
+|  8 | Saimra  | NULL         | NULL    |            |    250000 |         0 |           0 |          0 |     0 |       0 | 2021-06-01 | F      |
+|  9 | Maria   | NULL         | TBD     | Marketing  |    300000 |     50000 |      250000 |      25000 | 50000 |  250000 | 2021-04-01 | F      |
++----+---------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee_payroll WHERE name="Maria";
++----+-------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+| id | name  | phone_number | address | department | Basic_pay | Deduction | Taxable_pay | Income_Tax | Tax   | Net_Pay | start      | gender |
++----+-------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+|  7 | Maria | NULL         | NULL    | sales      |    350000 |         0 |           0 |          0 |     0 |       0 | 2021-05-01 | F      |
+|  9 | Maria | NULL         | TBD     | Marketing  |    300000 |     50000 |      250000 |      25000 | 50000 |  250000 | 2021-04-01 | F      |
++----+-------+--------------+---------+------------+-----------+-----------+-------------+------------+-------+---------+------------+--------+
+2 rows in set (0.03 sec)
