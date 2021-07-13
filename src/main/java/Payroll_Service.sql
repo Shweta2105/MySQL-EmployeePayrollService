@@ -87,4 +87,29 @@ mysql> select * from employee_payroll;
 +----+---------+--------+------------+
 5 rows in set (0.03 sec)
 
+//UC 5
+mysql> insert INTO employee_payroll
+    -> (name,salary,start) values
+    -> ("Bill",450000,'2021-03-01');
+Query OK, 1 row affected (10.19 sec)
+
+mysql> select salary from employee_payroll
+    -> where name="Bill";
++--------+
+| salary |
++--------+
+| 450000 |
++--------+
+1 row in set (1.01 sec)
+
+mysql>  SELECT salary FROM employee_payroll WHERE start BETWEEN CAST('2021-05-09' AS DATE) AND DATE(NOW());
++--------+
+| salary |
++--------+
+| 300000 |
+| 250000 |
+| 250000 |
++--------+
+3 rows in set (0.00 sec)
+
 
